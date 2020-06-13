@@ -3,22 +3,15 @@
 ## Create namespace
 
 ```bash
-kubectl create namespace development
+kubectl create namespace elk
 ```
 
 ## Elasticsearch
 
-### Add the service account, the cluster role and the cluster role binding
-
-```bash
-kubectl apply -f elasticsearch-rbac.yml
-```
-
 ### Installing Elasticsearch
 
 ```bash
-kubectl apply -f statefulsets/elasticsearch.yml
-kubectl apply -f services/elasticsearch.yml
+kubectl apply -f elasticsearch.yml
 ```
 
 ### Expose Elasticsearch port
@@ -32,9 +25,7 @@ kubectl port-forward -n development svc/elasticsearch-logging 9200:9200
 ### Installing Logstash
 
 ```bash
-kubectl apply -f configmaps/logstash.yml
-kubectl apply -f deployments/logstash.yml
-kubectl apply -f services/logstash.yml
+kubectl apply -f logstash.yml
 ```
 
 ## Filebeat
@@ -43,4 +34,12 @@ kubectl apply -f services/logstash.yml
 
 ```bash
 kubectl apply -f filebeat.yml
+```
+
+## Kibana
+
+### Installing Kibana
+
+```bash
+kubectl apply -f kibana.yml
 ```
